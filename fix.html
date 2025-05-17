@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sayang Kamu 💜</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #e0bbff, #d291ff, #c084f5);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .slider {
+      width: 90%;
+      max-width: 500px;
+      background: white;
+      border-radius: 30px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #7b1fa2;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #4a148c;
+      margin-bottom: 20px;
+    }
+
+    .emoji {
+      font-size: 2em;
+      margin-top: 10px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #ba68c8;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ab47bc;
+    }
+
+    iframe {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    #popup .box {
+      background: #fff0f7;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 300px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border: 3px dashed #ba68c8;
+    }
+
+    #popup h2 {
+      color: #c2185b;
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    #popup button {
+      margin-top: 15px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <h1>Untuk Kamu yang Aku Sayangi 🌸</h1>
+      <p>Dari sekian banyak detik dalam hidupku, yang paling aku syukuri... adalah detik saat kamu hadir.</p>
+      <p class="emoji">💜</p>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <h1>Kamu Itu Rumah</h1>
+      <p>Bukan bangunan, bukan tempat. Tapi hati yang selalu bikin aku merasa tenang — itulah kamu.</p>
+      <p class="emoji">🏡💕</p>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <h1>Tanpa Kamu...</h1>
+      <p>Hari terasa datar, senyumku terasa setengah, dan boba pun hambar 🧋💔</p>
+      <p class="emoji">😞🫠</p>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+      <h1>Kamu Satu-Satunya</h1>
+      <p>Bukan hanya bagian dari hariku, tapi alasan kenapa hariku bisa indah.</p>
+      <p class="emoji">🌈💖</p>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+      <h1>Ssstt, Pertanyaan Terakhir 😳</h1>
+      <p>Aku mau tanya sesuatu nih, tapi janji ya jujur jawabnya...</p>
+      <p class="emoji">🤭❣️</p>
+      <button onclick="showPopup()">Klik di sini...</button>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="prevSlide()">Sebelumnya</button>
+      <button onclick="nextSlide()">Selanjutnya</button>
+    </div>
+
+    <!-- Musik Angel Baby -->
+    <iframe width="0" height="0" src="https://youtu.be/DAyEIa_bGU0?si=XoAvGrmARQf39aG8" allow="autoplay" allowfullscreen></iframe>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup">
+    <div class="box">
+      <h2>Kamu sayang aku nggak? 🥺</h2>
+      <div>
+        <a href="https://wa.me/?text=Iya%20sayang%20%F0%9F%92%96" target="_blank">
+          <button style="background-color: #66bb6a; color: white;">Sayang ❤️</button>
+        </a>
+        <button onclick="closePopup()" style="background-color: #ef5350; color: white;">Enggak 😢</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+          slide.classList.add('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function showPopup() {
+      document.getElementById('popup').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
